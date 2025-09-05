@@ -14,27 +14,19 @@ A simple 4-bit Arithmetic Logic Unit (ALU) designed in Verilog. The ALU performs
 - Simulation waveforms provided
 
 **Project Structure**
-Basic
+
 Basic_ALU_Project/
-Basic_ALU_Project/
-│
-├── src/                      # Source HDL files
-│   └── ALU.v                 # Verilog implementation of the ALU
-│
-├── testbench/                # Verification files
-│   └── ALU_tb.v              # Verilog testbench for simulation
-│
-├── docs/                     # Documentation & diagrams
-│   ├── block_diagram.png     # ALU block diagram
-│   └── operation_table.md    # ALU operation codes & descriptions
-│
-├── simulation_results/       # Outputs from simulations
-│   ├── waveform.png          # Example waveform screenshot
-│   └── logs.txt              # Console/simulation logs
-│
-├── .gitignore                # Ignore tool-generated files
-├── LICENSE                   # (Optional) Open-source license
-├── README.md                 # Main project description
+--> src/                      # Source HDL files
+    -->ALU.v                  # Verilog implementation of the ALU
+--> testbench/                # Verification files
+    -->ALU_tb.v               # Verilog testbench for simulation
+--> docs/                     # Documentation & diagrams
+    -->block_diagram.png      # ALU block diagram
+    --> operation_table.md    # ALU operation codes & descriptions
+--> simulation_results/       # Outputs from simulations
+    --> waveform.png          # Example waveform screenshot
+    --> logs.txt              # Console/simulation logs
+--> README.md                 # Main project description
 
 **Tools & Technologies**
  - Verilog HDL for design
