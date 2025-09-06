@@ -1,0 +1,45 @@
+`timescale 1ns / 1ps
+
+
+module alu_tb;
+
+// Inputs
+reg [3:0] A;
+reg [3:0] B;
+reg [2:0] opcode;
+
+// Outputs
+wire [3:0] result;
+wire carry;
+wire zero;
+
+// Instantiate the ALU
+top uut (
+    .A(A),
+    .B(B),
+    .opcode(opcode),
+    .result(result),
+    .carry(carry),
+    .zero(zero)
+);
+
+integer i;
+
+// Test procedure
+initial begin
+
+    A = 8'h0A;
+    B = 4'h02;
+    opcode = 4'h0;
+    
+    for (i=0;i<15;i=i+1)
+    begin
+    opcode = opcode + 8'h01;
+    #10;
+    end;
+    
+    A = 8'hF6;
+    B = 8'h0A;
+    
+    end
+endmodule
