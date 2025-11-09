@@ -1,35 +1,28 @@
 `timescale 1ns / 1ps
 
 
-module top(
-    input [3:0] A,                  //4-bit input A
-    input [3:0] B,                  //4-bit input B
-    input [2:0] opcode,             //3-bit opcode
-    output reg [3:0] result,       //4-bit result
-    output reg carry,               //Optional flag
-    output reg zero                 //Optional flag
-    );
-    
-always @(*) begin
-    carry = 0;
-    case(opcode)
-        3'b000: {carry, result} = A + B;        //Addition
-        3'b001: {carry, result} = A - B;        //Subtraction
-        3'b010: result = A & B;                 //AND
-        3'b011: result = A | B;                 //OR
-        3'b100: result = A ^ B;                 //XOR
-        3'b101: result = ~A;                    //NOT (on A)
-        3'b110: result = A << 1;                //Shift Left
-        3'b111: result = A >> 1;                //Shift Right
-        default: result = 4'b0000;
-    endcase
-    
-    // Zero flag
-    if (result == 4'b0000)
-        zero = 1;
-    else 
-        zero = 0;
- end
- 
-   
+module ALU4bit(x,y,a,b,opcode);
+	input [3:0] a,b,opcode;
+	output [3:0] x,y;
+
+always @(a,b,opcode)
+	case(opcode)
+		4'b0000: x[0] = |a;
+		4'b0001: x[0] = &a;
+		4'b0010: x[0] = ^a;
+		4'b0011: x = a & b;
+		4'b0100: x = a | b;
+		4'b0101: x = a ^ b;
+		4'b0110: x[0] = a > b;
+		4'b0111: x[0] = a < b;
+		4'b1000: x[0] = !a;
+		4'b1001: x[0] = a == b;
+		4'b1010: {y[0],x} = a + b;
+		4'b1011: x = a - b;
+		4'b1100: {y,x} = a * b;
+		4'b1101: {y,x} = a >> b;
+		4'b1110: {y,x} = a << b;
+		4'b1111: x = ~a;
+		default: x = 4'b0000;
+	endcase
 endmodule
