@@ -1,45 +1,40 @@
 `timescale 1ns / 1ps
 
 
-module alu_tb;
+module ALU4bit_tb();
 
-// Inputs
-reg [3:0] A;
-reg [3:0] B;
-reg [2:0] opcode;
+// Testbench signals
+reg  [3:0] a;
+reg  [3:0] b;
+reg  [3:0] opcode;
+wire [3:0] x;
+wire [3:0] y;
 
-// Outputs
-wire [3:0] result;
-wire carry;
-wire zero;
-
-// Instantiate the ALU
-top uut (
-    .A(A),
-    .B(B),
+// Instantiate the Unit Under Test (UUT)
+ALU4bit uut (
+    .a(a),
+    .b(b),
     .opcode(opcode),
-    .result(result),
-    .carry(carry),
-    .zero(zero)
+    .x(x),
+    .y(y)
 );
 
-integer i;
-
-// Test procedure
 initial begin
 
-    A = 8'h0A;
-    B = 4'h02;
-    opcode = 4'h0;
-    
-    for (i=0;i<15;i=i+1)
-    begin
-    opcode = opcode + 8'h01;
-    #10;
-    end;
-    
-    A = 8'hF6;
-    B = 8'h0A;
-    
+    // Initialize inputs
+    a = 4'b0101;  // 5
+    b = 4'b0011;  // 3
+    opcode = 4'b0000;
+
+    // Loop through all opcodes 0-15
+    repeat (16) begin
+        #10;  // Wait 10 ns per operation
+        opcode = opcode + 1;
     end
+
+    #10;
+    $stop;
+end
+
+
 endmodule
