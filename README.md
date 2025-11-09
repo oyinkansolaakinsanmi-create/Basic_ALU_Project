@@ -38,7 +38,7 @@ This project demonstrates key digital design concepts such as combinational logi
 
 ---
 
-## 📚 Tools & Technologies
+## Tools & Technologies
 
 - **HDL:** Verilog  
 - **Simulation & Synthesis:** Xilinx Vivado  
